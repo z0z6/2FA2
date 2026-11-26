@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">2FA</string>
+    <string name="title_activity_main">2FA</string>
+    <string name="package_name">pl.projektnumer4.twofa</string>
+    <string name="custom_url_scheme">pl.projektnumer4.twofa</string>
+</resources>

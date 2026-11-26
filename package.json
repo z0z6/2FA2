@@ -1,0 +1,67 @@
+{
+  "name": "authenticator-2fa",
+  "productName": "2FA",
+  "version": "1.1.0",
+  "description": "Autorska aplikacja do kodów dwuskładnikowych (TOTP/HOTP) na Windows i Androida",
+  "main": "src/main/main.js",
+  "author": "projektnumer4",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "test": "node test/run-tests.js",
+    "dist:win": "electron-builder --win portable --publish never",
+    "dist:linux": "electron-builder --linux AppImage --publish never",
+    "android:sync": "cap sync android",
+    "android:open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/clipboard": "^8.0.1",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/preferences": "^8.0.1",
+    "@capacitor/share": "^8.0.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "pl.projektnumer4.twofa",
+    "productName": "2FA",
+    "artifactName": "2FA-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "package.json",
+      "!**/*.map",
+      "!node_modules/**"
+    ],
+    "afterPack": "build/afterPack.js",
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "executableName": "twofa",
+      "icon": "build/icon.png",
+      "category": "Utility",
+      "synopsis": "Kody dwuskładnikowe 2FA",
+      "syncDesktopName": true
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "build/icon.png"
+    },
+    "portable": {
+      "artifactName": "2FA-${version}-portable.exe"
+    }
+  },
+  "desktopName": "twofa.desktop"
+}
